@@ -13,30 +13,30 @@ public class MovieController {
    @Autowired
     MovieService movieService;
 
-   @PostMapping ("/add_movie")
+   @PostMapping ("/movies/add-movie")
     public ResponseEntity<String> addMovie(@RequestBody Movie movie){
        movieService.addMovie(movie);
        return new ResponseEntity<>("movie added",HttpStatus.CREATED);
    }
-   @PostMapping("/add_director")
+   @PostMapping("/movies/add-director")
     public ResponseEntity<String> addDirector(@RequestBody Director director){
        movieService.addDirector(director);
        return new ResponseEntity<>("director added",HttpStatus.CREATED);
     }
-    @PutMapping("/add-movie-director-pair")
+    @PutMapping("/movies/add-movie-director-pair")
     public ResponseEntity<String> addMovieDirectorPair(@RequestParam("d") String directorName,@RequestParam("m") String movieName) {
           String s=movieService.addMovieDirectorPair(directorName,movieName);
           if(s!=null)
               return new ResponseEntity<>(s,HttpStatus.CREATED);
           return new ResponseEntity<>("not present",HttpStatus.NO_CONTENT);
     }
-    @GetMapping("/get_movie")
-    public ResponseEntity<Movie> getMovieByName(@RequestParam("m") String movieName) {
+    @GetMapping("/movies/get-movie-by-name/{name}")
+    public ResponseEntity<Movie> getMovieByName(@PathVariable("name") String movieName) {
       Movie movie=movieService.getMovieByName(movieName);
        return new ResponseEntity<>(movie,HttpStatus.FOUND);
     }
-    @GetMapping("/get_director")
-    public ResponseEntity<Director> getDirectorByName(@RequestParam("d") String directorName) {
+    @GetMapping("/movies/get-director-by-name/{name}")
+    public ResponseEntity<Director> getDirectorByName(@PathVariable("name") String directorName) {
         Director director=movieService.getDirectorByName(directorName);
         return new ResponseEntity<>(director,HttpStatus.FOUND);
     }
