@@ -24,8 +24,8 @@ public class MovieController {
        return new ResponseEntity<>("director added",HttpStatus.CREATED);
     }
     @PutMapping("/movies/add-movie-director-pair")
-    public ResponseEntity<String> addMovieDirectorPair(@RequestParam("d") String directorName,@RequestParam("m") String movieName) {
-          String s=movieService.addMovieDirectorPair(directorName,movieName);
+    public ResponseEntity<String> addMovieDirectorPair(@RequestParam("m") String movieName,@RequestParam("d") String directorName) {
+          String s=movieService.addMovieDirectorPair(movieName,directorName);
           if(s!=null)
               return new ResponseEntity<>(s,HttpStatus.CREATED);
           return new ResponseEntity<>("not present",HttpStatus.NO_CONTENT);

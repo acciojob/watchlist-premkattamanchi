@@ -18,8 +18,8 @@ public class MovieService {
     public void addDirector(Director director){
         movieRepository.addDirector(director);
     }
-    public String addMovieDirectorPair(String directorName,String movieName){
-        return movieRepository.addMovieDirectorPair(directorName, movieName);
+    public String addMovieDirectorPair(String movieName,String directorName){
+        return movieRepository.addMovieDirectorPair(movieName,directorName);
     }
     public Movie getMovieByName(String movieName) {
         return movieRepository.getMovieByName(movieName);
